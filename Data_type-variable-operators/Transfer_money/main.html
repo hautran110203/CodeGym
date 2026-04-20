@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Transfer money</title>
+  </head>
+  <body>
+    <div>
+      <form
+        action="transfer_money"
+        onsubmit="
+          event.preventDefault();
+          print_screen();
+        "
+      >
+        <legend>Transfer money</legend>
+        <table>
+          <tr>
+            <th><label for="amount"> Amount</label></th>
+            <th><label for="From">From Currency</label></th>
+            <th><label for="To">To Currency</label></th>
+          </tr>
+          <tr>
+            <td><input type="number" name="amount" id="amount" /></td>
+            <td>
+              <select name="From" id="From">
+                <option value="VietNam">VietNam</option>
+                <option value="USD">USD</option>
+              </select>
+            </td>
+            <td>
+              <select name="To" id="To">
+                <option value="USD">USD</option>
+                <option value="VietNam">VietNam</option>
+              </select>
+            </td>
+            <td>
+              <input type="submit" value="Convert" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div id="result">Kết quả</div>
+    <script>
+      function Convert_money() {
+        let value = Number(document.getElementById("amount").value);
+        let from = document.getElementById("From").value;
+        let to = document.getElementById("To").value;
+        let rate = 25000;
+
+        switch (from + "-" + to) {
+          case "VietNam-USD":
+            return value / rate;
+          case "USD-VietNam":
+            return value * rate;
+          default:
+            return value;
+        }
+      }
+      function print_screen() {
+        let result = Convert_money();
+        document.getElementById("result").innerText = "Result: " + result;
+      }
+    </script>
+  </body>
+</html>
