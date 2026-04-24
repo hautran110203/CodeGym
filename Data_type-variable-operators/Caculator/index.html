@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caculator</title>
+  </head>
+  <style>
+    form {
+      width: 500px;
+      background-color: azure;
+      text-align: center;
+      font-size: 24px;
+    }
+    input[type="number"] {
+      padding: 10px 20px;
+      border: 1px solid;
+      border-radius: 5px;
+    }
+    .button_operation {
+      margin: 20px auto;
+    }
+    .button_operation button {
+      padding: 10px 20px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <form action="caculator">
+      <fieldset>
+        <legend>Máy tính cơ bản</legend>
+        <input type="number" id="number1" placeholder="Nhập số a" />
+        <input type="number" id="number2" placeholder="Nhập số b" />
+        <div class="button_operation">
+          <button type="button" onclick="caculator('+')">+</button>
+          <button type="button" onclick="caculator('-')">-</button>
+          <button type="button" onclick="caculator('x')">X</button>
+          <button type="button" onclick="caculator('/')">/</button>
+        </div>
+        <div id="result">Kết quả</div>
+      </fieldset>
+    </form>
+    <script>
+      function caculator(opr) {
+        let a = Number(document.getElementById("number1").value);
+        let b = Number(document.getElementById("number2").value);
+        let result;
+        switch (opr) {
+          case "+":
+            result = a + b;
+            break;
+          case "-":
+            result = a - b;
+            break;
+          case "x":
+            result = a * b;
+            break;
+          case "/":
+            if (b === 0) {
+              result = "Không thể chia cho 0";
+            } else {
+              result = a / b;
+            }
+            break;
+        }
+        document.getElementById("result").innerText = "Kết quả: " + result;
+      }
+    </script>
+  </body>
+</html>
